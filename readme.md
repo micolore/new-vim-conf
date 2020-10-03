@@ -10,8 +10,8 @@
    我自己的neovim的配置文件，仅供参考，可自行修改。
 
 ### 要装的插件列表 
-* mhinz/vim-startify
-  花里胡哨的nvim启动的软件开发名人名言
+* mhinz/vim-startify 
+  vim启动界面，类似emacs的dashboard
 * junegunn/vim-easy-align
 * vim-scripts/YankRing.vim
    文本复制
