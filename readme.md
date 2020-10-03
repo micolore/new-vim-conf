@@ -1,4 +1,4 @@
-# vim
+# vim config
  把vim(neovim)配置成日常开发(golang)使用的的ide
  
 ##  文件介绍
