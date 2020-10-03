@@ -12,7 +12,18 @@ nnoremap <leader>q :q<CR>
 
 " 设置行号
 set number
+set enc=utf-8
+set fencs=utf-8,ucs-bom,shift-jis,gb18030,gbk,gb2312,cp936
 
+"禁止生成临时文件
+set nobackup
+set noswapfile
+" 换行
+set tabstop=4
+" 禁止提示音  
+set noeb
+" 突出显示当前行
+set cursorline              
 " 光标样式竖线
 set gcr=n-v-c:ver25-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor
 
@@ -23,12 +34,7 @@ set relativenumber
 " ********************************************************
 " theme
 " ********************************************************
-syntax enable
-set background=dark        " for the light version
-let g:one_allow_italics = 1 " I love italic for comments
-set termguicolors
-colorscheme molokai
-
+Plug 'morhetz/gruvbox'
 
 " ********************************************************
 " 启动界面
@@ -250,12 +256,12 @@ let g:NERDTreeIndicatorMapCustom = {
   \ }
 let g:gitgutter_max_signs = 500  " default value " gitgutter
 
-" ********************************************************
-" theme 
-" https://github.com/mhartington/oceanic-next
-" ********************************************************
-"Plug 'mhartington/oceanic-next'
 
+" ********************************************************
+" 文件类型展示
+" https://github.com/ryanoasis/vim-devicons
+" ********************************************************
+Plug 'ryanoasis/vim-devicons'
 
 
 " ********************************************************
@@ -342,3 +348,25 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "coc config end 
 
 call plug#end()
+
+colorscheme gruvbox
+
+" ********************************************************
+" nmap list 常规模式的映射键列表 
+" ********************************************************
+
+" ********************************************************
+" imap list 插入模式的映射键列表 
+" ********************************************************
+" 退出插入模式 ctrl+i
+imap <C-I> <Esc>
+
+
+" ********************************************************
+" cmap list 命令模式的映射键列表 
+" ********************************************************
+
+
+" ********************************************************
+" vmap list 可视模式的映射键列表 
+" ********************************************************

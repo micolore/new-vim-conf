@@ -1,0 +1,32 @@
+* vim 
+
+** map 键盘映射
+
+*** 介绍
+  映射F5到插入一段文字
+
+#+BEGIN_SRC 
+:map <F5> i{e<Esc>a}<Esc>
+#+END_SRC
+
+*** 类型
+    以下几种map与vi的默认模式有关，常规(n)、可视化(v)、运算符(o)、插入(i)、命令行(c)
+**** map
+**** nmap
+**** vmap
+**** omap
+**** map!
+**** imap
+**** cmap
+*** 取消键位设置
+#+BEGIN_SRC 
+:unmap <F10>
+#+END_SRC
+    
+
+
+
+** command 
+
+*** find
+*** b 切换buf
