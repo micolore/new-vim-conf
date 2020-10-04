@@ -4,8 +4,8 @@ call plug#begin('/Users/kubrick/.config/nvim/autoload')
 " ********************************************************
 " 基本配置
 " ********************************************************
-" 设置前缀键为反斜线, E: /w 保存当前文件 , /q 退出vim
-let mapleader="/"
+" 设置前缀键为反斜线, E: <space>w 保存当前文件 , <space>q 退出vim
+let mapleader=" "
 nnoremap <leader>1 :1b<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -67,48 +67,20 @@ Plug 'vim-airline/vim-airline'
 set statusline+=%1*\ %<%F\     "文件路径
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
-"设置切换Buffer快捷键"
-" nnoremap <leader>> :bn<CR>
-" nnoremap <leader>< :bp<CR>
-" move between file and buffer 
-
-" ********************************************************
-" Plug 'ctrlpvim/ctrlp.vim' 模糊搜索插件
-" https://github.com/ctrlpvim/ctrlp.vim 
-" ********************************************************
-"nnoremap <leader>bb :CtrlPBuffer<CR>
-"nnoremap <leader>ff :CtrlPMRU<CR>
-"nnoremap <leader>ll :CtrlP<CR>
-"nnoremap <leader>ll :CtrlPMixed<CR>
 
 
 " ********************************************************
 " 模糊搜索插件
 " https://github.com/Yggdroot/LeaderF 
+" tab 切换，F1y有快捷键介绍
 " ********************************************************
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-nnoremap <leader>bb :LeaderfBuffer<CR>
+nnoremap <leader>b  :LeaderfBuffer<CR>
 nnoremap <leader>fl :LeaderfFile  <CR>
 nnoremap <leader>uf :LeaderfMru   <CR>
 nnoremap <leader>fn ::LeaderfFunction <CR>
 nnoremap <leader>ln :LeaderfLine  <CR>
-nnoremap <leader>r :Leaderf rg <CR>
-
-
-"" ********************************************************
-" 搜索插件
-" ********************************************************
-Plug 'mileszs/ack.vim'
-" ack.vim
-" 使用 leader + a search
-cnoreabbrev Ack Ack!
-nnoremap <F3> :Ack! <Space>
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --nogroup --column'
-endif
-" 高亮搜索关键词
-let g:ackhighlight = 1
-nnoremap <leader>cc :cclose<CR> 
+nnoremap <leader>r  :Leaderf rg <CR>
 
 
 " ********************************************************
@@ -152,12 +124,6 @@ let g:ale_linters = {
 nmap ]a <Plug>(ale_next_wrap)
 nmap [a <Plug>(ale_previous_wrap)
 
-" minibuffer 
-"let g:miniBufExplMapWindowNavVim = 1 
-"let g:miniBufExplMapWindowNavArrows = 1 
-"let g:miniBufExplMapCTabSwitchBufs = 1 
-"let g:miniBufExplModSelTarget = 1 
-"Plug 'bling/vim-bufferline'
 
 " ********************************************************
 " 自动补全括号
@@ -242,7 +208,7 @@ let NERDTreeWinSize=33
 let g:nerdtree_tabs_open_on_console_startup=1
 " 忽略一下文件的显示
 let NERDTreeIgnore=['\.pyc','\~$','\.swp']
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom= {
 	\ "Modified"  : "✹",
 	\ "Staged"    : "✚",
 	\ "Untracked" : "✭",
@@ -272,13 +238,7 @@ let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
 
 
-" ********************************************************
-" https://github.com/neoclide/coc.nvim
-" ********************************************************
-" Use release branch (Recommend)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-nmap ge :CocCommand explorer<CR> 
-Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+
 
 "coc config start
 " -------------------------------------------------------------------------------------------------
@@ -345,15 +305,50 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+
+" ********************************************************
+" coc explorer
+" https://github.com/neoclide/coc.nvim
+" ********************************************************
+" Use release branch (Recommend)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+nmap ge :CocCommand explorer<CR> 
 "coc config end 
 
 call plug#end()
 
 colorscheme gruvbox
 
+
 " ********************************************************
-" nmap list 常规模式的映射键列表 
+" terminal
 " ********************************************************
+nnoremap <leader>T :te<CR>
+
+" ********************************************************
+" file system manager
+" :Explorer = nertw default 
+" ********************************************************
+
+" ********************************************************
+" map list 插入模式的映射键列表 
+" ********************************************************
+" 全选、剪切、复制
+map <C-A> <Esc>ggVG
+map <C-X> d
+map <C-C> y
+
+
+" ********************************************************
+" nmap/nnoremap list 常规模式的映射键列表 
+" ********************************************************
+"按Ctrl+h 向左移动一个buffer
+nnoremap <C-h> :bp<CR>
+"按Ctrl+l 向右移动一个buffer
+nnoremap <C-l> :bn<CR>
+"按Ctrl+^ 关闭当前buffer
+nnoremap <C-C> :bd<CR>
+
 
 " ********************************************************
 " imap list 插入模式的映射键列表 
@@ -361,11 +356,19 @@ colorscheme gruvbox
 " 退出插入模式 ctrl+i
 imap <C-I> <Esc>
 
+" ********************************************************
+" inoremap list 插入模式的非递归映射键列表 
+" ********************************************************
+" 自动补全括号
+inoremap { {<CR>}<ESC>kA<CR>
+
 
 " ********************************************************
 " cmap list 命令模式的映射键列表 
 " ********************************************************
-
+" 移动到行首
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
 
 " ********************************************************
 " vmap list 可视模式的映射键列表 

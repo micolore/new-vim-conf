@@ -18,6 +18,19 @@
 **** map!
 **** imap
 **** cmap
+**** inoremap
+     insert no recursion map 
+     插入模式非递归映射
+***** Shift+Enter用来跳出括号
+#+BEGIN_SRC 
+inoremap <s-cr> <ESC>la
+#+END_SRC
+***** 如果键入{，自动补全后面，并格式化。
+#+BEGIN_SRC 
+inoremap { {<CR>}<ESC>kA<CR>
+#+END_SRC
+
+
 *** 取消键位设置
 #+BEGIN_SRC 
 :unmap <F10>
@@ -30,3 +43,13 @@
 
 *** find
 *** b 切换buf
+*** 文件浏览
+    netrw Explore
+** 其他
+*** 图标
+#+BEGIN_SRC 
+
+brew tap homebrew/cask-fonts
+brew cask install font-hack-nerd-font
+
+#+END_SRC
