@@ -9,6 +9,7 @@ let mapleader=" "
 nnoremap <leader>1 :1b<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+
 " 加载配置文件
 nmap <leader>so :so ~/.config/nvim/init.vim<CR>
 
@@ -26,12 +27,12 @@ set tabstop=4
 set noeb
 " 突出显示当前行
 set cursorline 
-highlight CursorLine   cterm=NONE ctermbg=black ctermfg=red guibg=NONE guifg=NONE
-" highlight CursorColumn cterm=NONE ctermbg=black ctermfg=red guibg=NONE guifg=NONE
-" 光标样式竖线
-" set gcr=n-v-c:ver25-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor
 " 修改补全的提示框颜色，默认是粉红色
 highlight Pmenu ctermfg=15 ctermbg=0 guifg=darkgrey guibg=black
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=red guibg=NONE guifg=NONE
+highlight CursorColumn cterm=NONE ctermbg=black ctermfg=yellow guibg=NONE guifg=NONE
+" 光标样式竖线
+" set gcr=n-v-c:ver25-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor
 " 设置相对行号
 set relativenumber
 
@@ -325,6 +326,12 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 nmap ge :CocCommand explorer<CR> 
 "coc config end 
 
+
+" ********************************************************
+"  find and release 
+" ********************************************************
+Plug 'brooth/far.vim'
+
 call plug#end()
 
 " Theme
@@ -368,6 +375,7 @@ nnoremap <C-h> :bp<CR>
 nnoremap <C-l> :bn<CR>
 "按Ctrl+^ 关闭当前buffer
 nnoremap <C-C> :bd<CR>
+nnoremap <leader>ba :1,1000 bd!<cr>
 
 
 " ********************************************************
@@ -375,6 +383,15 @@ nnoremap <C-C> :bd<CR>
 " ********************************************************
 " 退出插入模式 
 inoremap <C-[> <Esc>
+
+" emacs line editor
+imap <C-e> <END>
+imap <C-a> <HOME>
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <C-p> <UP>
+imap <C-n> <DOWN>
+
 
 " ********************************************************
 " inoremap list 插入模式的非递归映射键列表 

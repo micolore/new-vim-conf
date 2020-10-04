@@ -36,6 +36,10 @@ inoremap { {<CR>}<ESC>kA<CR>
 :unmap <F10>
 #+END_SRC
     
+*** 查询键位绑定关系
+#+BEGIN_SRC 
+:verbose imap <tab>
+#+END_SRC
 
 
 
