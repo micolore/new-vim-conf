@@ -4,11 +4,13 @@ call plug#begin('/Users/kubrick/.config/nvim/autoload')
 " ********************************************************
 " 基本配置
 " ********************************************************
-" 设置前缀键为反斜线, E: <space>w 保存当前文件 , <space>q 退出vim
+" 设置前缀键为space, E: <space>w 保存当前文件 , <space>q 退出vim
 let mapleader=" "
 nnoremap <leader>1 :1b<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
+" 加载配置文件
+nmap <leader>so :so ~/.config/nvim/init.vim<CR>
 
 " 设置行号
 set number
@@ -23,10 +25,13 @@ set tabstop=4
 " 禁止提示音  
 set noeb
 " 突出显示当前行
-set cursorline              
+set cursorline 
+highlight CursorLine   cterm=NONE ctermbg=black ctermfg=red guibg=NONE guifg=NONE
+" highlight CursorColumn cterm=NONE ctermbg=black ctermfg=red guibg=NONE guifg=NONE
 " 光标样式竖线
-set gcr=n-v-c:ver25-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor
-
+" set gcr=n-v-c:ver25-Cursor/lCursor,ve:ver35-Cursor,o:hor50-Cursor,i-ci:ver25-Cursor/lCursor
+" 修改补全的提示框颜色，默认是粉红色
+highlight Pmenu ctermfg=15 ctermbg=0 guifg=darkgrey guibg=black
 " 设置相对行号
 set relativenumber
 
@@ -35,6 +40,7 @@ set relativenumber
 " theme
 " ********************************************************
 Plug 'morhetz/gruvbox'
+" Plug 'jacoborus/tender.vim'
 
 " ********************************************************
 " 启动界面
@@ -53,7 +59,7 @@ Plug 'junegunn/vim-easy-align'
 " 粘贴板记录
 " https://github.com/vim-scripts/YankRing.vim coc有替代品
 " ********************************************************
-Plug 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/YankRing.vim'
 
 " Or override 
 " Start nnn in the current file's directory
@@ -75,11 +81,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " tab 切换，F1y有快捷键介绍
 " ********************************************************
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-nnoremap <leader>b  :LeaderfBuffer<CR>
-nnoremap <leader>fl :LeaderfFile  <CR>
+nnoremap <leader>sb :LeaderfBuffer<CR>
+nnoremap <leader>sl :LeaderfFile  <CR>
 nnoremap <leader>uf :LeaderfMru   <CR>
 nnoremap <leader>fn ::LeaderfFunction <CR>
-nnoremap <leader>ln :LeaderfLine  <CR>
+nnoremap <leader>sw :LeaderfLine  <CR>
 nnoremap <leader>r  :Leaderf rg <CR>
 
 
@@ -130,6 +136,8 @@ nmap [a <Plug>(ale_previous_wrap)
 " https://github.com/jiangmiao/auto-pairs
 " ********************************************************
 Plug 'jiangmiao/auto-pairs'
+let g:AutoPairs = {',':' ','(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"} 
+let g:AutoPairs = {'if':' ','(':')', '[':']', '{':'}',"'":"'",'"':'"', "`":"`", '```':'```', '"""':'"""', "'''":"'''"}  
 
 
 " ********************************************************
@@ -144,6 +152,10 @@ Plug 'roxma/nvim-yarp'
 " https://github.com/fatih/vim-go
 " ********************************************************
 Plug 'fatih/vim-go'
+" 默认运行golang main
+nmap <C-R> :GoRun<CR>
+" 默认运行golang test
+nmap <C-T> :GoTest<CR>
 
 
 " ********************************************************
@@ -189,7 +201,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 " 文件树设置 {{{
 " 关闭NERDTree快捷键
-map <leader>t :NERDTreeToggle<CR>
 map <F2> :NERDTreeMirror<CR>
 map <F2> :NERDTreeToggle<CR>
 ""当NERDTree为剩下的唯一窗口时自动关闭
@@ -234,9 +245,8 @@ Plug 'ryanoasis/vim-devicons'
 " 缩进线
 " ********************************************************
 Plug 'Yggdroot/indentLine'
-let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
-let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
-
+let g:indentLine_char='┆'
+let g:indentLine_enabled = 1
 
 
 
@@ -317,13 +327,23 @@ nmap ge :CocCommand explorer<CR>
 
 call plug#end()
 
+" Theme
+syntax enable
+" colorscheme tender
 colorscheme gruvbox
+" If you have vim >=8.0 or Neovim >= 0.1.5
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+" For Neovim 0.1.3 and 0.1.4
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 
 " ********************************************************
 " terminal
 " ********************************************************
-nnoremap <leader>T :te<CR>
+map <leader>ts :te<CR>
 
 " ********************************************************
 " file system manager
@@ -353,15 +373,15 @@ nnoremap <C-C> :bd<CR>
 " ********************************************************
 " imap list 插入模式的映射键列表 
 " ********************************************************
-" 退出插入模式 ctrl+i
-imap <C-I> <Esc>
+" 退出插入模式 
+inoremap <C-[> <Esc>
 
 " ********************************************************
 " inoremap list 插入模式的非递归映射键列表 
 " ********************************************************
 " 自动补全括号
-inoremap { {<CR>}<ESC>kA<CR>
-
+" inoremap { {<CR>}<ESC>kA<CR>
+ 
 
 " ********************************************************
 " cmap list 命令模式的映射键列表 
