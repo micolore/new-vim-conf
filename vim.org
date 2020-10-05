@@ -49,6 +49,8 @@ inoremap { {<CR>}<ESC>kA<CR>
 *** b 切换buf
 *** 文件浏览
     netrw Explore
+*** 概念
+<silent> 静默映射
 ** 其他
 *** 图标
 #+BEGIN_SRC 

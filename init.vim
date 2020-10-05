@@ -6,6 +6,9 @@ call plug#begin('/Users/kubrick/.config/nvim/autoload')
 " ********************************************************
 " 设置前缀键为space, E: <space>w 保存当前文件 , <space>q 退出vim
 let mapleader=" "
+" 这个有点东西
+noremap ; :
+
 nnoremap <leader>1 :1b<CR>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :q<CR>
@@ -370,12 +373,23 @@ map <C-C> y
 " nmap/nnoremap list 常规模式的映射键列表 
 " ********************************************************
 "按Ctrl+h 向左移动一个buffer
-nnoremap <C-h> :bp<CR>
+" nnoremap <C-h> :bp<CR>
 "按Ctrl+l 向右移动一个buffer
-nnoremap <C-l> :bn<CR>
-"按Ctrl+^ 关闭当前buffer
-nnoremap <C-C> :bd<CR>
-nnoremap <leader>ba :1,1000 bd!<cr>
+"nnoremap <C-l> :bn<CR>
+"按ctrl+^ 关闭当前buffer
+"nnoremap <C-C> :bd<CR>
+"nnoremap <leader>ba :1,1000 bd!<cr>
+
+nnoremap <silent> bl :ls<CR>
+nnoremap <silent> bu :enew<CR>
+nnoremap <silent> bn :bnext<CR>
+nnoremap <silent> bb :bprevious<CR>
+nnoremap <silent> bd :bdelete<CR>
+
+
+" five word
+noremap W 5w
+noremap B 5b
 
 
 " ********************************************************
