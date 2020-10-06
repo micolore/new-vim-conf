@@ -1,5 +1,5 @@
 * neovim config
-
+  我现在正在用emacs来写org文件，对此我们不应该非此即彼（虽热我纠结了好几天），要用包容的心态。来面对一切事物。
 ** mapping
 
 *** mapleader 
