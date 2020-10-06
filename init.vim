@@ -85,12 +85,38 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " tab 切换，F1y有快捷键介绍
 " ********************************************************
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
-nnoremap <leader>sb :LeaderfBuffer<CR>
-nnoremap <leader>sl :LeaderfFile  <CR>
-nnoremap <leader>uf :LeaderfMru   <CR>
-nnoremap <leader>fn ::LeaderfFunction <CR>
-nnoremap <leader>sw :LeaderfLine  <CR>
-nnoremap <leader>r  :Leaderf rg <CR>
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
 
 
 " ********************************************************
@@ -190,6 +216,31 @@ let g:go_highlight_generate_tags = 1
 let g:go_highlight_format_strings = 1
 let g:go_highlight_variable_declarations = 1
 let g:go_auto_sameids = 1
+
+
+" file manager 
+"Plug 'vifm/vifm.vim'
+Plug 'kevinhwang91/rnvimr'
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_pick_enable = 1
+let g:rnvimr_draw_border = 0
+" let g:rnvimr_bw_enable = 1
+highlight link RnvimrNormal CursorLine
+nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+let g:rnvimr_action = {
+            \ '<C-t>': 'NvimEdit tabedit',
+            \ '<C-x>': 'NvimEdit split',
+            \ '<C-v>': 'NvimEdit vsplit',
+            \ 'gw': 'JumpNvimCwd',
+            \ 'yw': 'EmitRangerCwd'
+            \ }
+let g:rnvimr_layout = { 'relative': 'editor',
+            \ 'width': &columns,
+            \ 'height': &lines,
+            \ 'col': 0,
+            \ 'row': 0,
+            \ 'style': 'minimal' }
+let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
 
 
 " ********************************************************
@@ -341,6 +392,8 @@ call plug#end()
 syntax enable
 " colorscheme tender
 colorscheme gruvbox
+set background=dark cursorline termguicolors
+
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
  set termguicolors
@@ -372,15 +425,20 @@ map <C-C> y
 " ********************************************************
 " nmap/nnoremap list 常规模式的映射键列表 
 " ********************************************************
-"按Ctrl+h 向左移动一个buffer
-" nnoremap <C-h> :bp<CR>
-"按Ctrl+l 向右移动一个buffer
-"nnoremap <C-l> :bn<CR>
-"按ctrl+^ 关闭当前buffer
-"nnoremap <C-C> :bd<CR>
-"nnoremap <leader>ba :1,1000 bd!<cr>
 
-nnoremap <silent> bl :ls<CR>
+" resize window
+nnoremap <Up> :resize +2<CR> 
+nnoremap <Down> :resize -2<CR>
+nnoremap <Left> :vertical resize +2<CR>
+nnoremap <Right> :vertical resize -2<CR>
+
+" window move
+nnoremap <leader>h <C-W>h
+nnoremap <leader>j <C-W>j
+nnoremap <leader>k <C-W>k
+nnoremap <leader>l <C-W>l
+
+" buffer move
 nnoremap <silent> bu :enew<CR>
 nnoremap <silent> bn :bnext<CR>
 nnoremap <silent> bb :bprevious<CR>
