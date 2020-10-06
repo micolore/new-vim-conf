@@ -1,5 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =0
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/kubrick/.config/nvim'
 let g:netrw_dirhist_0='/Users/kubrick/.config/nvim/autoload'
 let g:netrw_dirhist_9='/Users/kubrick/.config/nvim'
 let g:netrw_dirhist_8='/Users/kubrick/Documents/workspace/go/moppo/new-wscrm-api'
@@ -9,4 +10,3 @@ let g:netrw_dirhist_5='/Users/kubrick'
 let g:netrw_dirhist_4='/Users/kubrick/Documents'
 let g:netrw_dirhist_3='/Users/kubrick/Documents/workspace'
 let g:netrw_dirhist_2='/Users/kubrick/Documents/workspace/go'
-let g:netrw_dirhist_1='/Users/kubrick/Documents/workspace/go/moppo'

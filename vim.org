@@ -30,7 +30,6 @@ inoremap <s-cr> <ESC>la
 inoremap { {<CR>}<ESC>kA<CR>
 #+END_SRC
 
-
 *** 取消键位设置
 #+BEGIN_SRC 
 :unmap <F10>
@@ -42,7 +41,6 @@ inoremap { {<CR>}<ESC>kA<CR>
 #+END_SRC
 
 
-
 ** command 
 
 *** find
@@ -51,6 +49,7 @@ inoremap { {<CR>}<ESC>kA<CR>
     netrw Explore
 *** 概念
 <silent> 静默映射
+
 ** 其他
 *** 图标
 #+BEGIN_SRC 

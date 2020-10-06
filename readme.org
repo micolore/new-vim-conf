@@ -1,0 +1,14 @@
+* neovim config
+
+** move 
+
+** editor
+
+** search
+
+** file manager
+
+** terminal 
+
+** AutoComplete
+*** coc.nvim
