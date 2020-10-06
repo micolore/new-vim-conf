@@ -9,10 +9,6 @@ let mapleader=" "
 " 这个有点东西
 noremap ; :
 
-nnoremap <leader>1 :1b<CR>
-nnoremap <leader>w :w<CR>
-nnoremap <leader>q :q<CR>
-
 " 加载配置文件
 nmap <leader>so :so ~/.config/nvim/init.vim<CR>
 
@@ -64,10 +60,6 @@ Plug 'junegunn/vim-easy-align'
 " https://github.com/vim-scripts/YankRing.vim coc有替代品
 " ********************************************************
 " Plug 'vim-scripts/YankRing.vim'
-
-" Or override 
-" Start nnn in the current file's directory
-nnoremap <leader>n :NnnPicker '%:p:h'<CR>
 
 
 " ********************************************************
@@ -429,45 +421,43 @@ let g:terminal_color_14 = '#9AEDFE'
 
 
 " ********************************************************
-" file system manager
-" :Explorer = nertw default 
-" ********************************************************
-
-" ********************************************************
 " map list 插入模式的映射键列表 
 " ********************************************************
 " 全选、剪切、复制
 map <C-A> <Esc>ggVG
-map <C-X> d
-map <C-C> y
+map <C-X> dd
+map <C-C> yy
 
 
 " ********************************************************
 " nmap/nnoremap list 常规模式的映射键列表 
 " ********************************************************
 
+" 保存、退出
+nnoremap S :w<CR>
+nnoremap Q :q<CR>
+noremap <C-q> :qa<CR>
 " resize window
 nnoremap <Up> :resize +2<CR> 
 nnoremap <Down> :resize -2<CR>
 nnoremap <Left> :vertical resize +2<CR>
 nnoremap <Right> :vertical resize -2<CR>
-
 " window move
 nnoremap <leader>h <C-W>h
 nnoremap <leader>j <C-W>j
 nnoremap <leader>k <C-W>k
 nnoremap <leader>l <C-W>l
-
 " buffer move
 nnoremap <silent> bu :enew<CR>
 nnoremap <silent> bn :bnext<CR>
 nnoremap <silent> bb :bprevious<CR>
 nnoremap <silent> bd :bdelete<CR>
-
-
 " five word
-noremap W 5w
-noremap B 5b
+noremap <silent> W 5W
+noremap <silent> B 5b
+" five line 
+noremap <silent> U 5k
+noremap <silent> E 5j
 
 
 " ********************************************************
