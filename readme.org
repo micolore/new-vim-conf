@@ -10,12 +10,56 @@
 noremap ; :
 
 #+END_SRC
-  
+*** 基本映射
+    尽量使用单独的键即可，不需要太多的键(单个字母)。大写的键其实就是Shift+w（与<Silent>还不是一样）
+**** 插入
+#+BEGIN_SRC 
+nnoremap S :s<CR>
+#+END_SRC
+
+**** 保存
+#+BEGIN_SRC 
+nnoremap W :w<CR>
+#+END_SRC
+
+**** 退出
+#+BEGIN_SRC 
+nnoremap Q :q<CR>
+#+END_SRC
+
 
 ** move 
 *** normal 
+**** 进入命令行操作（快进快退）
+**** 进入文件管理系统寻找文件（不如emacs的方便）
+**** 进入搜索界面（查询单词、文件、buffer）
+**** 快速移动
+***** 多单词
+#+BEGIN_SRC 
+noremap W 5w
+noremap B 5b
+#+END_SRC
+***** 多行移动
+#+BEGIN_SRC 
+noremap U 5k
+noremap E 5j
+#+END_SRC
+
 
 *** insert
+**** 像emacs那样操作行文字（移动、删除等等）
+#+BEGIN_SRC 
+imap <C-e> <END>
+imap <C-a> <HOME>
+imap <C-f> <Right>
+imap <C-b> <Left>
+imap <C-p> <UP>
+imap <C-n> <DOWN>
+#+END_SRC
+
+**** 切换模式
+     一般是切换到normal模式，有的人是使用C-C、jj类似的。
+**** 自动补全的tab，需要注意与第三方的插件是否有冲突。
 
 *** terminal
 
@@ -62,6 +106,30 @@ noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 
 ** file manager
+#+BEGIN_SRC 
+Plug 'kevinhwang91/rnvimr'
+let g:rnvimr_ex_enable = 1
+let g:rnvimr_pick_enable = 1
+let g:rnvimr_draw_border = 0
+" let g:rnvimr_bw_enable = 1
+highlight link RnvimrNormal CursorLine
+nnoremap <silent> R :RnvimrToggle<CR><C-\><C-n>:RnvimrResize 0<CR>
+let g:rnvimr_action = {
+            \ '<C-t>': 'NvimEdit tabedit',
+            \ '<C-x>': 'NvimEdit split',
+            \ '<C-v>': 'NvimEdit vsplit',
+            \ 'gw': 'JumpNvimCwd',
+            \ 'yw': 'EmitRangerCwd'
+            \ }
+let g:rnvimr_layout = { 'relative': 'editor',
+            \ 'width': &columns,
+            \ 'height': &lines,
+            \ 'col': 0,
+            \ 'row': 0,
+            \ 'style': 'minimal' }
+let g:rnvimr_presets = [{'width': 1.0, 'height': 1.0}]
+#+END_SRC
+
 
 ** terminal 
    命令行基本控制
@@ -92,9 +160,9 @@ let g:terminal_color_14 = '#9AEDFE'
 ** AutoComplete
 *** coc.nvim
 
+
 ** theme
 
-*** 主题
 *** 特殊
 **** 自动补全、高亮行、列
 #+BEGIN_SRC 
