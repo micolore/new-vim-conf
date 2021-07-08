@@ -1,5 +1,5 @@
 * neovim config
-   neovim、tmux、fzf
+   neovim、tmux、coc.vim、f、vim-go、vim-godef、vim-startify、ale、auto-pairs、rnvimr、nerdtree、vim-devicons、indentLine、far
 ** 效果演示
 *** 1、启动页面
 [[./img/neovim-1.jpg]]
