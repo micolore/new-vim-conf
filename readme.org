@@ -2,8 +2,8 @@
    neovim、tmux、coc.vim、f、vim-go、vim-godef、vim-startify、ale、auto-pairs、rnvimr、nerdtree、vim-devicons、indentLine、far
    
 ** 安装流程
-*** 1、先安装最新neovim
-*** 2、再安装插件 vim-plug 
+*** 1、安装最新neovim
+*** 2、安装插件 vim-plug 
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 ** 效果演示
